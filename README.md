@@ -75,7 +75,8 @@ BUILD SUCCESS
 
 | Mutant | Failed tests | Failures |
 |---|---|---|
-| 1 — Remove inactive-student check | `inactiveStudent_returnsErrorWithoutEmailInteraction`, `invalidRegistration_returnsExpectedError` (INACTIVE_STUDENT) | 2 |
+
+| 1 — Remove inactive-student check | `inactiveStudent_returnsErrorWithoutEmailInteraction`, `invalidRegistration_returnsExpectedError[2]` (INACTIVE_STUDENT) | 2 |
 | 2 — Remove saveRegistration() | `activeStudent_validCourse_returnsOK`, `emailFailure_registrationStillSucceeds` | 2 |
 | 3 — Remove courseId == null check | `nullInputs_throwIllegalArgumentException` | 1 |
 
