@@ -8,7 +8,7 @@
 
 Энэхүү лабораторийн ажлаар Mockito ашиглан өгөгдлийн сан болон имэйл илгээх үйлчилгээг mock объектоор орлуулж, `CourseRegistrationService` классын ажиллагааг JUnit 5 ашиглан шалгав.
 
-Мөн mutation testing хийж, тестүүд алдаатай кодыг илрүүлж чадаж байгаа эсэхийг туршив.
+Мөн mutation testing хийж, тестүүд алдаатай кодыг илрүүлж чадаж байгаа эсэхийг туршив.  
 
 ## 2. Ашигласан орчин
 
@@ -16,6 +16,29 @@
 - Java: OpenJDK 17.0.20.1 LTS (Microsoft)
 - Maven: Apache Maven 3.9.16
 - Тестийн сан: JUnit 5, Mockito
+
+
+### Java хувилбар
+
+Команд: `java -version`
+
+```text
+openjdk version "17.0.20.1" 2026-08-18 LTS
+OpenJDK Runtime Environment Microsoft-14940689 (build 17.0.20.1+1-LTS)
+OpenJDK 64-Bit Server VM Microsoft-14940689 (build 17.0.20.1+1-LTS, mixed mode, sharing)
+```
+
+### Maven хувилбар
+
+Команд: `mvn -version`
+
+```text
+Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+Maven home: C:\maven\apache-maven-3.9.16
+Java version: 17.0.20.1, vendor: Microsoft, runtime: C:\Program Files\Microsoft\jdk-17.0.20.101-hotspot
+Default locale: en_US, platform encoding: Cp1252
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+```
 
 ## 3. Mockito тестүүд
 
@@ -49,11 +72,13 @@ BUILD SUCCESS
 
 Үндсэн кодод гурван төрлийн алдааг зориудаар оруулж, тестүүд илрүүлж байгаа эсэхийг шалгав.
 
-| № | Хийсэн өөрчлөлт | Алдаатай тестийн тоо | Үр дүн |
-|---|---|---|---|
-| 1 | Идэвхгүй оюутны шалгалтыг арилгасан | 2 | Илрүүлсэн |
-| 2 | `saveRegistration()` дуудлагыг арилгасан | 2 | Илрүүлсэн |
-| 3 | `courseId == null` шалгалтыг арилгасан | 1 | Илрүүлсэн |
+
+| Mutant | Failed tests | Failures |
+|---|---|---|
+| 1 — Remove inactive-student check | `inactiveStudent_returnsErrorWithoutEmailInteraction`, `invalidRegistration_returnsExpectedError` (INACTIVE_STUDENT) | 2 |
+| 2 — Remove saveRegistration() | `activeStudent_validCourse_returnsOK`, `emailFailure_registrationStillSucceeds` | 2 |
+| 3 — Remove courseId == null check | `nullInputs_throwIllegalArgumentException` | 1 |
+
 
 Гурван өөрчлөлт тус бүрд `BUILD FAILURE` гарсан. Энэ нь тестүүд алдаатай кодыг илрүүлж байгааг харуулсан.
 
